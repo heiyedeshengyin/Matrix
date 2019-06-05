@@ -40,16 +40,35 @@ public:
 	int get_cols_num();
 	T get_value(int i, int j);
 	bool is_zero();
+	bool is_phalanx();	//·½Õó
 	bool is_diagonal_matrix();	//¶Ô½Ç¾ØÕó
 	bool is_scalar_matrix();	//´¿Á¿¾ØÕó
 	bool is_unit_matrix();	//µ¥Î»¾ØÕó
 	matrix<T>& operator=(const matrix& another);
+	matrix<T>& operator+(const matrix& add);
+	matrix<T>& operator-(const matrix& sub);
+	matrix<T>& operator*(const matrix& mul);
+	matrix<T>& operator*(const T& mul);
+	matrix<T>& operator+=(const matrix& add);
+	matrix<T>& operator-=(const matrix& sub);
+	matrix<T>& power(int index);	//Ãİ¾ØÕó
+	matrix<T>& transposed();	//×ªÖÃ¾ØÕó
+	matrix<T>& adjoint();	//°éËæ¾ØÕó ÓĞÎÊÌâ
+	T det();
 	bool is_homotype(const matrix& compare);
 	bool operator==(const matrix& compare);
 	bool operator!=(const matrix& compare);
 	void print();
 };
 
+template <typename T>
+T** power_func(T** p, int n, int index);
+
+template <typename T>
+T** cofactor_func(T** p, int n, int i, int j);
+
+template <typename T>
+T det_func(T** p, int n);
 
 #endif // !MATRIX_H
 

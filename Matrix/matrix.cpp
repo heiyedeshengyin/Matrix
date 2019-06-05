@@ -245,6 +245,15 @@ bool matrix<T>::is_zero()
 }
 
 template <typename T>
+bool matrix<T>::is_phalanx()
+{
+	if (!p)
+		return false;
+	else
+		return rows == cols;
+}
+
+template <typename T>
 bool matrix<T>::is_diagonal_matrix()
 {
 	if (!p)
@@ -387,6 +396,347 @@ matrix<T>& matrix<T>::operator=(const matrix& another)
 		else
 			return *this;
 	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator+(const matrix& add)
+{
+	matrix<T>* result;
+	if (is_homotype(add))
+	{
+		result = new matrix<T>(rows, cols);
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				result->p[i][j] = p[i][j] + add.p[i][j];
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "+号运算符错误,相加的两个矩阵不是同型矩阵" << std::endl << std::endl;
+		
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator-(const matrix& sub)
+{
+	matrix<T>* result;
+	if (is_homotype(sub))
+	{
+		result = new matrix<T>(rows, cols);
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				result->p[i][j] = p[i][j] - sub.p[i][j];
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "-号运算符错误,相减的两个矩阵不是同型矩阵" << std::endl << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator*(const matrix& mul)
+{
+	matrix<T>* result;
+	if (p && mul.p && cols == mul.rows)
+	{
+		result = new matrix<T>(rows, mul.cols);
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < mul.cols; j++)
+				for (int k = 0; k < cols; k++)
+					result->p[i][j] += p[i][k] * mul.p[k][j];
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "*号运算符错误,相乘的两个矩阵不符合要求" << std::endl << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator*(const T& mul)
+{
+	matrix<T>* result;
+	if (p)
+	{
+		result = new matrix<T>(rows, cols);
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				result->p[i][j] = p[i][j] * mul;
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "*号运算符错误,矩阵未初始化" << std::endl << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator+=(const matrix& add)
+{
+	if (is_homotype(add))
+	{
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				p[i][j] += add.p[i][j];
+
+		return *this;
+	}
+	else
+	{
+		std::cout << "+=号运算符错误,相加的两个矩阵不是同型矩阵" << std::endl << std::endl;
+
+		return *this;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::operator-=(const matrix& sub)
+{
+	if (is_homotype(sub))
+	{
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				p[i][j] -= sub.p[i][j];
+
+		return *this;
+	}
+	else
+	{
+		std::cout << "-=号运算符错误,相加的两个矩阵不是同型矩阵" << std::endl << std::endl;
+
+		return *this;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::power(int index)
+{
+	matrix<T>* result;
+	if (p && rows == cols && index > 0)
+	{
+		if (index == 1)
+		{
+			result = new matrix<T>(*this);
+
+			return *result;
+		}
+		else
+		{
+			result = new matrix<T>(rows, cols);
+			result->p = power_func(p, rows, index);
+
+			return *result;
+		}
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "power函数异常" << std::endl << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+T** power_func(T** p, int n, int index)
+{
+	if (p && n > 0 && index > 0)
+	{
+		if (index == 1)
+			return p;
+		else if (index == 2)
+		{
+			T** result;
+			result = new T * [n];
+			for (int i = 0; i < n; i++)
+			{
+				result[i] = new T[n];
+				for (int j = 0; j < n; j++)
+					result[i][j] = 0;
+			}
+
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < n; j++)
+					for (int k = 0; k < n; k++)
+						result[i][j] += p[i][k] * p[k][j];
+
+			return result;
+		}
+		else
+		{
+			T** result;
+			T** muled = power_func(p, n, index - 1);
+			result = new T * [n];
+			for (int i = 0; i < n; i++)
+			{
+				result[i] = new T[n];
+				for (int j = 0; j < n; j++)
+					result[i][j] = 0;
+			}
+
+			for (int i = 0; i < n; i++)
+				for (int j = 0; j < n; j++)
+					for (int k = 0; k < n; k++)
+						result[i][j] += muled[i][k] * p[k][j];
+
+			return result;
+		}
+	}
+	else
+		return nullptr;
+}
+
+template <typename T>
+matrix<T>& matrix<T>::transposed()
+{
+	matrix<T>* result;
+	if (p)
+	{
+		result = new matrix<T>(cols, rows);
+		for (int i = 0; i < cols; i++)
+			for (int j = 0; j < rows; j++)
+				result->p[i][j] = p[j][i];
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "transposed函数异常,矩阵未初始化" << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::adjoint() //有问题
+{
+	matrix<T>* result;
+	if (p && cols == rows)
+	{
+		result = new matrix<T>(rows, cols);
+		T** cofactor;
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+			{
+				cofactor = cofactor_func(p, rows, i, j);
+				if ((i + j) % 2 == 0)
+					result->p[i][j] = det_func(cofactor, rows - 1);
+				else
+					result->p[i][j] = det_func(cofactor, rows - 1) * -1;
+				
+				for (int k = 0; k < rows - 1; k++)
+					delete[] cofactor[k];
+				delete[] cofactor;
+			}
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "adjoint函数异常,矩阵应为方阵" << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+T** cofactor_func(T** p, int n, int i, int j)
+{
+	if (p && n > 0 && i >= 0 && i < n && j >= 0 && j < n)
+	{
+		T** result;
+		result = new T * [n - 1];
+		for (int x = 0; x < n - 1; x++)
+			result[x] = new T[n - 1];
+
+		for (int x = 0; x < n - 1; x++)
+			for (int y = 0; y < n - 1; y++)
+			{
+				if (x < i && y < j)
+					result[x][y] = p[x][y];
+				if (x < i && y >= j)
+					result[x][y] = p[x][y + 1];
+				if (x >= i && y < j)
+					result[x][y] = p[x + 1][y];
+				if (x >= i && y >= j)
+					result[x][y] = p[x + 1][y + 1];
+			}
+
+		return result;
+	}
+	else
+		return nullptr;
+}
+
+template <typename T>
+T matrix<T>::det()
+{
+	if (p && rows == cols)
+		return det_func(p, rows);
+	else
+	{
+		std::cout << "det函数异常,矩阵应为方阵" << std::endl;
+
+		return NULL;
+	}
+}
+
+template <typename T>
+T det_func(T** p, int n)
+{
+	if (p && n > 0)
+	{
+		if (n == 1)
+			return p[0][0];
+		else if (n == 2)
+			return p[0][0] * p[1][1] - p[0][1] * p[1][0];
+		else
+		{
+			T result = 0;
+			T** next;
+			for (int i = 0; i < n; i++)
+			{
+				next = new T * [n - 1];
+				for (int j = 0; j < n - 1; j++)
+					next[j] = new T[n - 1];
+
+				for (int j = 0; j < n - 1; j++)
+					for (int k = 0; k < n - 1; k++)
+						if (k < i)
+							next[j][k] = p[j + 1][k];
+						else
+							next[j][k] = p[j + 1][k + 1];
+
+				if (i % 2 == 0)
+					result += det_func(next, n - 1) * p[0][i];
+				else
+					result -= det_func(next, n - 1) * p[0][i];
+			}
+
+			return result;
+		}
+	}
+	else
+		return -1;
 }
 
 template <typename T>
