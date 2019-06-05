@@ -39,7 +39,12 @@ public:
 	int get_rows_num();
 	int get_cols_num();
 	T get_value(int i, int j);
+	bool is_zero();
+	bool is_diagonal_matrix();	//∂‘Ω«æÿ’Û
+	bool is_scalar_matrix();	//¥ø¡øæÿ’Û
+	bool is_unit_matrix();	//µ•Œªæÿ’Û
 	matrix<T>& operator=(const matrix& another);
+	bool is_homotype(const matrix& compare);
 	bool operator==(const matrix& compare);
 	bool operator!=(const matrix& compare);
 	void print();

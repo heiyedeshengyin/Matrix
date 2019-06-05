@@ -229,6 +229,91 @@ T matrix<T>::get_value(int i, int j)
 }
 
 template <typename T>
+bool matrix<T>::is_zero()
+{
+	if (!p)
+		return false;
+	else
+	{
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				if (p[i][j] != 0)
+					return false;
+
+		return true;
+	}
+}
+
+template <typename T>
+bool matrix<T>::is_diagonal_matrix()
+{
+	if (!p)
+		return false;
+	else
+	{
+		if (rows != cols)
+			return false;
+		else
+		{
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < cols; j++)
+					if (i != j && p[i][j] != 0 || i == j && p[i][j] == 0)
+						return false;
+
+			return true;
+		}
+	}
+}
+
+template <typename T>
+bool matrix<T>::is_scalar_matrix()
+{
+	if (!p)
+		return false;
+	else
+	{
+		if (rows != cols)
+			return false;
+		else
+		{
+			T a = p[0][0];
+			if (a == 0)
+				return false;
+			else
+			{
+				for (int i = 0; i < rows; i++)
+					for (int j = 0; j < cols; j++)
+						if (i != j && p[i][j] != 0 || i == j && p[i][j] != a)
+							return false;
+
+				return true;
+			}
+		}
+	}
+}
+
+template <typename T>
+bool matrix<T>::is_unit_matrix()
+{
+	if (!p)
+		return false;
+	else
+	{
+		if (rows != cols)
+			return false;
+		else
+		{
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < cols; j++)
+					if (i != j && p[i][j] != 0 || i == j && p[i][j] != 1)
+						return false;
+
+			return true;
+		}
+	}
+}
+
+template <typename T>
 matrix<T>& matrix<T>::operator=(const matrix& another)
 {
 	if (this == &another)
@@ -302,6 +387,15 @@ matrix<T>& matrix<T>::operator=(const matrix& another)
 		else
 			return *this;
 	}
+}
+
+template <typename T>
+bool matrix<T>::is_homotype(const matrix& compare)
+{
+	if (p && compare.p)
+		return rows == compare.rows && cols == compare.cols;
+	else
+		return false;
 }
 
 template <typename T>
