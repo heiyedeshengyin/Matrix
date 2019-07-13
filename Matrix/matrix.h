@@ -53,7 +53,9 @@ public:
 	matrix<T>& operator-=(const matrix& sub);
 	matrix<T>& power(int index);	//Ãİ¾ØÕó
 	matrix<T>& transposed();	//×ªÖÃ¾ØÕó
-	matrix<T>& adjoint();	//°éËæ¾ØÕó ÓĞÎÊÌâ
+	matrix<T>& kron(const matrix& mul);	//Kronecher³Ë·¨
+	matrix<T>& repmat(int m, int n);	//À©Õ¹¾ØÕóm*n
+	matrix<T>& adjoint();	//°éËæ¾ØÕó
 	T det();
 	bool is_homotype(const matrix& compare);
 	bool operator==(const matrix& compare);

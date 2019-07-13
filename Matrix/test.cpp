@@ -3,14 +3,13 @@
 using namespace std;
 int main()
 {
-	matrix<int> m1(true);
-	m1.print();
+	matrix<double> m1(true);
 
-	matrix<int> m2 = m1.adjoint();
+	matrix<double> m2 = m1.adjoint();
+
+	m1.print();
 	m2.print();
 
-	matrix<int> m3 = m2 * m1;
-	m3.print();
 
 	return 0;
 }

@@ -626,7 +626,55 @@ matrix<T>& matrix<T>::transposed()
 }
 
 template <typename T>
-matrix<T>& matrix<T>::adjoint() //有问题
+matrix<T>& matrix<T>::kron(const matrix& mul)
+{
+	matrix<T>* result;
+	if (p && mul.p)
+	{
+		result = new matrix<T>(rows * mul.rows, cols * mul.cols);
+		for (int a_row = 0; a_row < rows; a_row++)
+			for (int a_col = 0; a_col < cols; a_col++)
+				for (int b_row = 0; b_row < mul.rows; b_row++)
+					for (int b_col = 0; b_col < mul.cols; b_col++)
+						result->p[a_row * mul.rows + b_row][a_col * mul.cols + b_col] = p[a_row][a_col] * mul.p[b_row][b_col];
+		
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "kron函数异常,矩阵未初始化" << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::repmat(int m, int n)
+{
+	matrix<T>* result;
+	if (p && m > 0 && n > 0)
+	{
+		result = new matrix<T>(m * rows, n * cols);
+		for (int m_row = 0; m_row < m; m_row++)
+			for (int n_col = 0; n_col < n; n_col++)
+				for (int ori_row = 0; ori_row < rows; ori_row++)
+					for (int ori_col = 0; ori_col < cols; ori_col++)
+						result->p[m_row * rows + ori_row][n_col * cols + ori_col] = p[ori_row][ori_col];
+
+		return *result;
+	}
+	else
+	{
+		result = new matrix<T>();
+		std::cout << "repmat函数异常" << std::endl;
+
+		return *result;
+	}
+}
+
+template <typename T>
+matrix<T>& matrix<T>::adjoint()
 {
 	matrix<T>* result;
 	if (p && cols == rows)
@@ -638,9 +686,9 @@ matrix<T>& matrix<T>::adjoint() //有问题
 			{
 				cofactor = cofactor_func(p, rows, i, j);
 				if ((i + j) % 2 == 0)
-					result->p[i][j] = det_func(cofactor, rows - 1);
+					result->p[j][i] = det_func(cofactor, rows - 1);
 				else
-					result->p[i][j] = det_func(cofactor, rows - 1) * -1;
+					result->p[j][i] = det_func(cofactor, rows - 1) * -1;
 				
 				for (int k = 0; k < rows - 1; k++)
 					delete[] cofactor[k];
