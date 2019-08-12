@@ -323,6 +323,15 @@ bool matrix<T>::is_unit_matrix()
 }
 
 template <typename T>
+bool matrix<T>::is_reversible_matrix()
+{
+	if (p && rows == cols)
+		return det_func(p, rows) != 0;
+	else
+		return false;
+}
+
+template <typename T>
 matrix<T>& matrix<T>::operator=(const matrix& another)
 {
 	if (this == &another)

@@ -3,12 +3,12 @@
 using namespace std;
 int main()
 {
-	matrix<double> m1(true);
+	matrix<long double> m1(true);
 
-	matrix<double> m2 = m1.adjoint();
-
-	m1.print();
-	m2.print();
+	if (m1.is_reversible_matrix())
+		cout << "¾ØÕó¿ÉÄæ" << endl;
+	else
+		cout << "¾ØÕó²»¿ÉÄæ" << endl;
 
 
 	return 0;

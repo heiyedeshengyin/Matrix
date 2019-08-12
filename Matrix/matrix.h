@@ -44,6 +44,7 @@ public:
 	bool is_diagonal_matrix();	//对角矩阵
 	bool is_scalar_matrix();	//纯量矩阵
 	bool is_unit_matrix();	//单位矩阵
+	bool is_reversible_matrix();	//可逆矩阵
 	matrix<T>& operator=(const matrix& another);
 	matrix<T>& operator+(const matrix& add);
 	matrix<T>& operator-(const matrix& sub);
