@@ -1,5 +1,5 @@
 /*
-	Copyright 2019 heiyedeshengyin All Rights Reserved.
+	Copyright 2020 heiyedeshengyin All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ matrix<T>::matrix(int rows_num, int cols_num)
 		rows = 0;
 		cols = 0;
 		p = nullptr;
-		std::cout << "¹¹Ôìº¯Êý´íÎó,¾ØÕóµÄÐÐÊý»òÁÐÊý±ØÐëÎªÕýÊý" << std::endl << std::endl;
+		std::cout << "æž„é€ å‡½æ•°é”™è¯¯,çŸ©é˜µçš„è¡Œæ•°æˆ–åˆ—æ•°å¿…é¡»ä¸ºæ­£æ•°" << std::endl << std::endl;
 	}
 }
 
@@ -72,7 +72,7 @@ matrix<T>::matrix(int rows_num, int cols_num, T value)
 		rows = 0;
 		cols = 0;
 		p = nullptr;
-		std::cout << "¹¹Ôìº¯Êý´íÎó,¾ØÕóµÄÐÐÊý»òÁÐÊý±ØÐëÎªÕýÊý" << std::endl << std::endl;
+		std::cout << "æž„é€ å‡½æ•°é”™è¯¯,çŸ©é˜µçš„è¡Œæ•°æˆ–åˆ—æ•°å¿…é¡»ä¸ºæ­£æ•°" << std::endl << std::endl;
 	}
 }
 
@@ -110,7 +110,7 @@ matrix<T>::matrix(bool isInit)
 {
 	if (isInit)
 	{
-		std::cout << "ÕýÔÚ³õÊ¼»¯Ò»¸ö¾ØÕó,ÇëÊäÈë¾ØÕóµÄÐÐÊý:";
+		std::cout << "æ­£åœ¨åˆå§‹åŒ–ä¸€ä¸ªçŸ©é˜µ,è¯·è¾“å…¥çŸ©é˜µçš„è¡Œæ•°:";
 		int _rows;
 		std::cin >> _rows;
 		if (_rows < 1)
@@ -118,11 +118,11 @@ matrix<T>::matrix(bool isInit)
 			rows = 0;
 			cols = 0;
 			p = nullptr;
-			std::cout << "ÊäÈëµÄÐÐÊýÓ¦´óÓÚÁã,¾ØÕó³õÊ¼»¯Ê§°Ü" << std::endl << std::endl;
+			std::cout << "è¾“å…¥çš„è¡Œæ•°åº”å¤§äºŽé›¶,çŸ©é˜µåˆå§‹åŒ–å¤±è´¥" << std::endl << std::endl;
 		}
 		else if (_rows == 1)
 		{
-			std::cout << "ÊäÈëµÄÐÐÊýµÈÓÚÒ»,³õÊ¼»¯Ò»¸öÐÐ¾ØÕó,ÇëÊäÈëÐÐ¾ØÕóµÄÁÐÊý:";
+			std::cout << "è¾“å…¥çš„è¡Œæ•°ç­‰äºŽä¸€,åˆå§‹åŒ–ä¸€ä¸ªè¡ŒçŸ©é˜µ,è¯·è¾“å…¥è¡ŒçŸ©é˜µçš„åˆ—æ•°:";
 			int _cols;
 			std::cin >> _cols;
 			if (_cols < 1)
@@ -130,34 +130,34 @@ matrix<T>::matrix(bool isInit)
 				rows = 0;
 				cols = 0;
 				p = nullptr;
-				std::cout << "ÊäÈëµÄÁÐÊýÓ¦´óÓÚÁã,¾ØÕó³õÊ¼»¯Ê§°Ü" << std::endl << std::endl;
+				std::cout << "è¾“å…¥çš„åˆ—æ•°åº”å¤§äºŽé›¶,çŸ©é˜µåˆå§‹åŒ–å¤±è´¥" << std::endl << std::endl;
 			}
 			else if (_cols == 1)
 			{
 				rows = 1;
 				cols = 1;
 				init();
-				std::cout << "Õý´´½¨Ö»ÓÐÒ»¸öÔªËØµÄ¾ØÕó,ÇëÊäÈë¸ÃÔªËØµÄÖµ:";
+				std::cout << "æ­£åˆ›å»ºåªæœ‰ä¸€ä¸ªå…ƒç´ çš„çŸ©é˜µ,è¯·è¾“å…¥è¯¥å…ƒç´ çš„å€¼:";
 				std::cin >> p[0][0];
-				std::cout << "¾ØÕó´´½¨³É¹¦" << std::endl << std::endl;
+				std::cout << "çŸ©é˜µåˆ›å»ºæˆåŠŸ" << std::endl << std::endl;
 			}
 			else
 			{
 				rows = 1;
 				cols = _cols;
 				init();
-				std::cout << "ÒÑ´´½¨ÓÐ" << cols << "¸öÔªËØµÄÐÐ¾ØÕó,ÇëÒÀ´ÎÊäÈëÃ¿¸öÔªËØµÄÖµ" << std::endl;
+				std::cout << "å·²åˆ›å»ºæœ‰" << cols << "ä¸ªå…ƒç´ çš„è¡ŒçŸ©é˜µ,è¯·ä¾æ¬¡è¾“å…¥æ¯ä¸ªå…ƒç´ çš„å€¼" << std::endl;
 				for (int i = 0; i < cols; i++)
 				{
-					std::cout << "ÇëÊäÈëÐÐ¾ØÕóµÚ" << i + 1 << "¸öÔªËØµÄÖµ:";
+					std::cout << "è¯·è¾“å…¥è¡ŒçŸ©é˜µç¬¬" << i + 1 << "ä¸ªå…ƒç´ çš„å€¼:";
 					std::cin >> p[0][i];
 				}
-				std::cout << "¾ØÕó´´½¨³É¹¦" << std::endl << std::endl;
+				std::cout << "çŸ©é˜µåˆ›å»ºæˆåŠŸ" << std::endl << std::endl;
 			}
 		}
 		else
 		{
-			std::cout << "ÊäÈëµÄÐÐÊýµÈÓÚ" << _rows << ",³õÊ¼»¯Ò»¸ö¾ØÕó,ÇëÊäÈë¾ØÕóµÄÁÐÊý:";
+			std::cout << "è¾“å…¥çš„è¡Œæ•°ç­‰äºŽ" << _rows << ",åˆå§‹åŒ–ä¸€ä¸ªçŸ©é˜µ,è¯·è¾“å…¥çŸ©é˜µçš„åˆ—æ•°:";
 			int _cols;
 			std::cin >> _cols;
 			if (_cols < 1)
@@ -165,34 +165,34 @@ matrix<T>::matrix(bool isInit)
 				rows = 0;
 				cols = 0;
 				p = nullptr;
-				std::cout << "ÊäÈëµÄÁÐÊýÓ¦´óÓÚÁã,¾ØÕó³õÊ¼»¯Ê§°Ü" << std::endl << std::endl;
+				std::cout << "è¾“å…¥çš„åˆ—æ•°åº”å¤§äºŽé›¶,çŸ©é˜µåˆå§‹åŒ–å¤±è´¥" << std::endl << std::endl;
 			}
 			else if (_cols == 1)
 			{
 				rows = _rows;
 				cols = 1;
 				init();
-				std::cout << "ÒÑ´´½¨ÓÐ" << rows << "¸öÔªËØµÄÁÐ¾ØÕó,ÇëÒÀ´ÎÊäÈëÃ¿¸öÔªËØµÄÖµ" << std::endl;
+				std::cout << "å·²åˆ›å»ºæœ‰" << rows << "ä¸ªå…ƒç´ çš„åˆ—çŸ©é˜µ,è¯·ä¾æ¬¡è¾“å…¥æ¯ä¸ªå…ƒç´ çš„å€¼" << std::endl;
 				for (int i = 0; i < rows; i++)
 				{
-					std::cout << "ÇëÊäÈëÁÐ¾ØÕóµÚ" << i + 1 << "¸öÔªËØµÄÖµ:";
+					std::cout << "è¯·è¾“å…¥åˆ—çŸ©é˜µç¬¬" << i + 1 << "ä¸ªå…ƒç´ çš„å€¼:";
 					std::cin >> p[i][0];
 				}
-				std::cout << "¾ØÕó´´½¨³É¹¦" << std::endl << std::endl;
+				std::cout << "çŸ©é˜µåˆ›å»ºæˆåŠŸ" << std::endl << std::endl;
 			}
 			else
 			{
 				rows = _rows;
 				cols = _cols;
 				init();
-				std::cout << "ÒÑ´´½¨ÐÐÊýÎª" << rows << ",ÁÐÊýÎª" << cols << "µÄ¾ØÕó,ÇëÒÀ´ÎÊäÈëÃ¿¸öÔªËØµÄÖµ" << std::endl;
+				std::cout << "å·²åˆ›å»ºè¡Œæ•°ä¸º" << rows << ",åˆ—æ•°ä¸º" << cols << "çš„çŸ©é˜µ,è¯·ä¾æ¬¡è¾“å…¥æ¯ä¸ªå…ƒç´ çš„å€¼" << std::endl;
 				for (int i = 0; i < rows; i++)
 					for (int j = 0; j < cols; j++)
 					{
-						std::cout << "ÇëÊäÈë¾ØÕóµÚ" << i + 1 << "ÐÐ,µÚ" << j + 1 << "ÁÐµÄÖµ:";
+						std::cout << "è¯·è¾“å…¥çŸ©é˜µç¬¬" << i + 1 << "è¡Œ,ç¬¬" << j + 1 << "åˆ—çš„å€¼:";
 						std::cin >> p[i][j];
 					}
-				std::cout << "¾ØÕó´´½¨³É¹¦" << std::endl << std::endl;
+				std::cout << "çŸ©é˜µåˆ›å»ºæˆåŠŸ" << std::endl << std::endl;
 			}
 		}
 	}
@@ -223,7 +223,7 @@ T matrix<T>::get_value(int i, int j)
 		return p[i - 1][j - 1];
 	else
 	{
-		std::cout << "get_valueº¯Êý´íÎó,ÊäÈëµÄ²ÎÊý³¬³ö·¶Î§" << std::endl;
+		std::cout << "get_valueå‡½æ•°é”™è¯¯,è¾“å…¥çš„å‚æ•°è¶…å‡ºèŒƒå›´" << std::endl;
 		return NULL;
 	}
 }
@@ -423,7 +423,7 @@ matrix<T>& matrix<T>::operator+(const matrix& add)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "+ºÅÔËËã·û´íÎó,Ïà¼ÓµÄÁ½¸ö¾ØÕó²»ÊÇÍ¬ÐÍ¾ØÕó" << std::endl << std::endl;
+		std::cout << "+å·è¿ç®—ç¬¦é”™è¯¯,ç›¸åŠ çš„ä¸¤ä¸ªçŸ©é˜µä¸æ˜¯åŒåž‹çŸ©é˜µ" << std::endl << std::endl;
 		
 		return *result;
 	}
@@ -445,7 +445,7 @@ matrix<T>& matrix<T>::operator-(const matrix& sub)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "-ºÅÔËËã·û´íÎó,Ïà¼õµÄÁ½¸ö¾ØÕó²»ÊÇÍ¬ÐÍ¾ØÕó" << std::endl << std::endl;
+		std::cout << "-å·è¿ç®—ç¬¦é”™è¯¯,ç›¸å‡çš„ä¸¤ä¸ªçŸ©é˜µä¸æ˜¯åŒåž‹çŸ©é˜µ" << std::endl << std::endl;
 
 		return *result;
 	}
@@ -468,7 +468,7 @@ matrix<T>& matrix<T>::operator*(const matrix& mul)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "*ºÅÔËËã·û´íÎó,Ïà³ËµÄÁ½¸ö¾ØÕó²»·ûºÏÒªÇó" << std::endl << std::endl;
+		std::cout << "*å·è¿ç®—ç¬¦é”™è¯¯,ç›¸ä¹˜çš„ä¸¤ä¸ªçŸ©é˜µä¸ç¬¦åˆè¦æ±‚" << std::endl << std::endl;
 
 		return *result;
 	}
@@ -490,7 +490,7 @@ matrix<T>& matrix<T>::operator*(const T& mul)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "*ºÅÔËËã·û´íÎó,¾ØÕóÎ´³õÊ¼»¯" << std::endl << std::endl;
+		std::cout << "*å·è¿ç®—ç¬¦é”™è¯¯,çŸ©é˜µæœªåˆå§‹åŒ–" << std::endl << std::endl;
 
 		return *result;
 	}
@@ -509,7 +509,7 @@ matrix<T>& matrix<T>::operator+=(const matrix& add)
 	}
 	else
 	{
-		std::cout << "+=ºÅÔËËã·û´íÎó,Ïà¼ÓµÄÁ½¸ö¾ØÕó²»ÊÇÍ¬ÐÍ¾ØÕó" << std::endl << std::endl;
+		std::cout << "+=å·è¿ç®—ç¬¦é”™è¯¯,ç›¸åŠ çš„ä¸¤ä¸ªçŸ©é˜µä¸æ˜¯åŒåž‹çŸ©é˜µ" << std::endl << std::endl;
 
 		return *this;
 	}
@@ -528,7 +528,7 @@ matrix<T>& matrix<T>::operator-=(const matrix& sub)
 	}
 	else
 	{
-		std::cout << "-=ºÅÔËËã·û´íÎó,Ïà¼ÓµÄÁ½¸ö¾ØÕó²»ÊÇÍ¬ÐÍ¾ØÕó" << std::endl << std::endl;
+		std::cout << "-=å·è¿ç®—ç¬¦é”™è¯¯,ç›¸åŠ çš„ä¸¤ä¸ªçŸ©é˜µä¸æ˜¯åŒåž‹çŸ©é˜µ" << std::endl << std::endl;
 
 		return *this;
 	}
@@ -557,7 +557,7 @@ matrix<T>& matrix<T>::power(int index)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "powerº¯ÊýÒì³£" << std::endl << std::endl;
+		std::cout << "powerå‡½æ•°å¼‚å¸¸" << std::endl << std::endl;
 
 		return *result;
 	}
@@ -628,7 +628,7 @@ matrix<T>& matrix<T>::transposed()
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "transposedº¯ÊýÒì³£,¾ØÕóÎ´³õÊ¼»¯" << std::endl;
+		std::cout << "transposedå‡½æ•°å¼‚å¸¸,çŸ©é˜µæœªåˆå§‹åŒ–" << std::endl;
 
 		return *result;
 	}
@@ -652,7 +652,7 @@ matrix<T>& matrix<T>::kron(const matrix& mul)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "kronº¯ÊýÒì³£,¾ØÕóÎ´³õÊ¼»¯" << std::endl;
+		std::cout << "kronå‡½æ•°å¼‚å¸¸,çŸ©é˜µæœªåˆå§‹åŒ–" << std::endl;
 
 		return *result;
 	}
@@ -676,7 +676,7 @@ matrix<T>& matrix<T>::repmat(int m, int n)
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "repmatº¯ÊýÒì³£" << std::endl;
+		std::cout << "repmatå‡½æ•°å¼‚å¸¸" << std::endl;
 
 		return *result;
 	}
@@ -709,7 +709,7 @@ matrix<T>& matrix<T>::adjoint()
 	else
 	{
 		result = new matrix<T>();
-		std::cout << "adjointº¯ÊýÒì³£,¾ØÕóÓ¦Îª·½Õó" << std::endl;
+		std::cout << "adjointå‡½æ•°å¼‚å¸¸,çŸ©é˜µåº”ä¸ºæ–¹é˜µ" << std::endl;
 
 		return *result;
 	}
@@ -751,7 +751,7 @@ T matrix<T>::det()
 		return det_func(p, rows);
 	else
 	{
-		std::cout << "detº¯ÊýÒì³£,¾ØÕóÓ¦Îª·½Õó" << std::endl;
+		std::cout << "detå‡½æ•°å¼‚å¸¸,çŸ©é˜µåº”ä¸ºæ–¹é˜µ" << std::endl;
 
 		return NULL;
 	}
@@ -861,5 +861,5 @@ void matrix<T>::print()
 		std::cout << std::endl;
 	}
 	else
-		std::cout << "¸Ã¾ØÕóÎ´³õÊ¼»¯" << std::endl << std::endl;
+		std::cout << "è¯¥çŸ©é˜µæœªåˆå§‹åŒ–" << std::endl << std::endl;
 }
