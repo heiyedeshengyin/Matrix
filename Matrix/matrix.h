@@ -1,5 +1,5 @@
 /*
-	Copyright 2019 heiyedeshengyin All Rights Reserved.
+	Copyright 2020 heiyedeshengyin All Rights Reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -40,11 +40,11 @@ public:
 	int get_cols_num();
 	T get_value(int i, int j);
 	bool is_zero();
-	bool is_phalanx();	//·½Õó
-	bool is_diagonal_matrix();	//¶Ô½Ç¾ØÕó
-	bool is_scalar_matrix();	//´¿Á¿¾ØÕó
-	bool is_unit_matrix();	//µ¥Î»¾ØÕó
-	bool is_reversible_matrix();	//¿ÉÄæ¾ØÕó
+	bool is_phalanx();	//æ–¹é˜µ
+	bool is_diagonal_matrix();	//å¯¹è§’çŸ©é˜µ
+	bool is_scalar_matrix();	//çº¯é‡çŸ©é˜µ
+	bool is_unit_matrix();	//å•ä½çŸ©é˜µ
+	bool is_reversible_matrix();	//å¯é€†çŸ©é˜µ
 	matrix<T>& operator=(const matrix& another);
 	matrix<T>& operator+(const matrix& add);
 	matrix<T>& operator-(const matrix& sub);
@@ -52,11 +52,11 @@ public:
 	matrix<T>& operator*(const T& mul);
 	matrix<T>& operator+=(const matrix& add);
 	matrix<T>& operator-=(const matrix& sub);
-	matrix<T>& power(int index);	//Ãİ¾ØÕó
-	matrix<T>& transposed();	//×ªÖÃ¾ØÕó
-	matrix<T>& kron(const matrix& mul);	//Kronecher³Ë·¨
-	matrix<T>& repmat(int m, int n);	//À©Õ¹¾ØÕóm*n
-	matrix<T>& adjoint();	//°éËæ¾ØÕó
+	matrix<T>& power(int index);	//å¹‚çŸ©é˜µ
+	matrix<T>& transposed();	//è½¬ç½®çŸ©é˜µ
+	matrix<T>& kron(const matrix& mul);	//Kronecherä¹˜æ³•
+	matrix<T>& repmat(int m, int n);	//æ‰©å±•çŸ©é˜µm*n
+	matrix<T>& adjoint();	//ä¼´éšçŸ©é˜µ
 	T det();
 	bool is_homotype(const matrix& compare);
 	bool operator==(const matrix& compare);
